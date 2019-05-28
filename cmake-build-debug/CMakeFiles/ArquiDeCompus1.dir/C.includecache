@@ -9,4 +9,6 @@
 /home/lucio/CLionProjects/ArquiDeCompus1/main.c
 stdio.h
 -
+stdlib.h
+-
 

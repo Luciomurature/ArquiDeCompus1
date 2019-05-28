@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 
 void output(unsigned char);
+void autoFantastico();
 
 
 int main() {
@@ -12,6 +14,10 @@ int main() {
 
 
     //auto fantastico
+
+
+    autoFantastico();
+
 
 
 
@@ -25,13 +31,11 @@ int main() {
 
 void output(unsigned char b){
     char led[8] = {'_','_','_','_','_','_','_','_'};
-    int pos;
 
     for(int i = 0; i < 8; i++){
         if((b&1) == 1){
-            pos = i;
+            led[i] = '*';
         }
-        led[pos] = '*';
         b = b >> 1;
     }
 
@@ -39,8 +43,31 @@ void output(unsigned char b){
     for(int i = 8; i > 0; i--)
     printf("%c", led[i-1]);
 
+
+    printf("\n");
+    printf("\n");
+    printf("\n");
+
+
 }
 
-void AutoFantastico(){
-    char led[8] = {'_','_','_','_','_','_','_','_'};
+void autoFantastico(){
+    int n=0;
+    do{
+        n++;
+        char led[8] = {'_','_','_','_','_','_','_','_'};
+        for (int i=0; i<8; i++){
+            led[i] = '*';
+            for(int i=8; i > 0 ; i--){
+                printf("%c",led[i]);
+            }
+            printf("\n");
+
+            char led[8] = {'_','_','_','_','_','_','_','_'};
+        }
+
+    }while(n<1);
+
+
+
 }
