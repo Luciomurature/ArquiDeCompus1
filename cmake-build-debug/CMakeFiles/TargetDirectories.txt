@@ -1,0 +1,3 @@
+/home/lucio/CLionProjects/ArquiDeCompus1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/lucio/CLionProjects/ArquiDeCompus1/cmake-build-debug/CMakeFiles/ArquiDeCompus1.dir
+/home/lucio/CLionProjects/ArquiDeCompus1/cmake-build-debug/CMakeFiles/edit_cache.dir
