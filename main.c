@@ -4,13 +4,10 @@
 
 void output(unsigned char);
 void autoFantastico();
+void delayc(int);
 
 
 int main() {
-    printf("Hello, World!\n");
-    int n;
-    scanf("%d", &n);
-    output(n);
 
 
     //auto fantastico
@@ -51,23 +48,30 @@ void output(unsigned char b){
 
 }
 
-void autoFantastico(){
-    int n=0;
-    do{
-        n++;
-        char led[8] = {'_','_','_','_','_','_','_','_'};
-        for (int i=0; i<8; i++){
-            led[i] = '*';
-            for(int i=8; i > 0 ; i--){
-                printf("%c",led[i]);
-            }
-            printf("\n");
-
-            char led[8] = {'_','_','_','_','_','_','_','_'};
-        }
-
-    }while(n<1);
-
-
-
+void autoFantastico() {
+    output(1);
+    delayc(25);
+    int i = 2;
+    do {
+        output(i);
+        delayc(25);
+        i = i * 2;
+    } while (i <= 64);
+    do {
+        output(i);
+        delayc(25);
+        i = i / 2;
+    } while (i > 0);
 }
+
+
+void delayc(int a){
+        for(int j=0;j<a;j++)
+        {
+            unsigned int i = 0x4fffff; //raspberry 0x3fffff
+            while(i)i--;
+        }
+        //system("clear");
+    }
+
+
