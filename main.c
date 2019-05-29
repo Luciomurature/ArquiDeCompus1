@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-static const int DELAY = 50;
+static const int DELAY = 15;
 
 void output(unsigned char);
 void autoFantastico();
@@ -64,11 +64,8 @@ int main() {
 
     autoFantasticoAlg();
 
-    printf("\n");
-
     carrera();
 
-    printf("\n");
 
     choque();
 
