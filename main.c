@@ -2,10 +2,13 @@
 #include <stdlib.h>
 
 
+static const int DELAY = 50;
+
 void output(unsigned char);
 void autoFantastico();
 void delayc(int);
-void autoFantasticoAlgoritmico();
+void autoFantasticoAlg();
+void menu();
 void carrera();
 
 void choque();
@@ -59,7 +62,7 @@ int main() {
 
     autoFantastico();
 
-    autoFantasticoAlgoritmico();
+    autoFantasticoAlg();
 
     printf("\n");
 
@@ -99,42 +102,43 @@ void output(unsigned char b){
         b = b >> 1;
     }
 
-    printf("\n");
+    printf("\r");
+    fflush(stdout);
 
 
 }
 
-void autoFantastico() {
+void autoFantasticoAlg() {
 
-    printf("Auto Fantastico\n");
     output(1);
-    delayc(25);
+    delayc(DELAY);
     int i = 2;
     do {
         output(i);
-        delayc(25);
+        delayc(DELAY);
         i *= 2;
     } while (i <= 64);
     do {
         output(i);
-        delayc(25);
+        delayc(DELAY);
         i /= 2;
     } while (i > 0);
+
 
 }
 
 
 
 
-void autoFantasticoAlgoritmico() {
+void autoFantastico() {
 
     for(int i = 0; i < 8; i++){
         output(datosAuto[i]);
-        delayc(25);
+        delayc(DELAY);
     }
     for(int i = 7; i > 0; i--){
         output(datosAuto[i]);
-        delayc(25);
+        delayc(DELAY);
     }
 
 
@@ -146,7 +150,7 @@ void autoFantasticoAlgoritmico() {
 void carrera(){
     for(int i = 0; i < 16; i++){
         output(datosCarrera[i]);
-        delayc(25);
+        delayc(DELAY);
     }
 }
 
@@ -154,7 +158,14 @@ void carrera(){
 void choque(){
     for(int i = 0; i < 8; i++){
         output(datosChoque[i]);
-        delayc(25);
+        delayc(DELAY);
     }
+}
+
+
+void menu(){
+
+
+
 }
 
