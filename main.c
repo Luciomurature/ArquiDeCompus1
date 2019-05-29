@@ -10,6 +10,8 @@ void carrera();
 
 void choque();
 
+//globals para funciones por tabla
+
 unsigned char datosAuto[]= {
         0x80,
         0x40,
@@ -55,7 +57,7 @@ unsigned char datosCarrera[] = {
 int main() {
 
 
-    //auto fantastico
+    autoFantastico();
 
     autoFantasticoAlgoritmico();
 
@@ -79,31 +81,23 @@ int main() {
 
 
 void delayc(int a){
-    for(int j=0;j<a;j++)
-    {
+    for(int j=0;j<a;j++){
         unsigned int i = 0x4fffff; //raspberry 0x3fffff
         while(i)i--;
     }
-    system("");
 }
 
 
 
 void output(unsigned char b){
-    char led[8] = {'_','_','_','_','_','_','_','_'};
 
-    for(int i = 0; i < 8; i++){
+
+    for(int i = 8; i > 0; i--){
         if((b&1) == 1){
-            led[i] = '*';
-        }
+            printf("*");
+        }else printf("_");
         b = b >> 1;
     }
-
-
-    for(int i = 8; i > 0; i--) {
-        printf("%c", led[i - 1]);
-    }
-
 
     printf("\n");
 
