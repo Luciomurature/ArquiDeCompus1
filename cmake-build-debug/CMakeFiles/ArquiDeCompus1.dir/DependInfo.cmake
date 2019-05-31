@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/matias/Descargas/arqui compu/ArquiDeCompus1/main.c" "/home/matias/Descargas/arqui compu/ArquiDeCompus1/cmake-build-debug/CMakeFiles/ArquiDeCompus1.dir/main.c.o"
+  "/home/lucio/CLionProjects/ArquiDeCompus1/main.c" "/home/lucio/CLionProjects/ArquiDeCompus1/cmake-build-debug/CMakeFiles/ArquiDeCompus1.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
