@@ -10,8 +10,9 @@ void delayc(int);
 void autoFantasticoAlg();
 void menu();
 void carrera();
-
+void pool();
 void choque();
+void tenis();
 
 //globals para funciones por tabla
 
@@ -56,10 +57,36 @@ unsigned char datosCarrera[] = {
         0x01,
 };
 
+unsigned char datosPool[] ={
+        0x90,
+        0x50,
+        0x30,
+        0x18,
+        0x14,
+        0x12,
+        0x11,
+};
+
+unsigned char datosTenis[] ={
+        0x81,
+        0xC1,
+        0xA1,
+        0x91,
+        0x89,
+        0x85,
+        0x83,
+        0x83,
+        0x85,
+        0x89,
+        0x91,
+        0xA1,
+        0xC1,
+};
+
 
 int main() {
 
-
+/*
     autoFantastico();
 
     autoFantasticoAlg();
@@ -69,7 +96,9 @@ int main() {
 
     choque();
 
-
+    pool();
+*/
+    tenis();
 
 
 
@@ -160,9 +189,19 @@ void choque(){
 }
 
 
-void menu(){
 
-
-
+void pool(){
+    for(int i = 0; i < 8; i++){
+        output(datosPool[i]);
+        delayc(DELAY);
+    }
 }
+
+void tenis(){
+    for(int i = 0; i < 13; i++){
+        output(datosTenis[i]);
+        delayc(DELAY);
+    }
+}
+
 
