@@ -86,7 +86,7 @@ unsigned char datosTenis[] ={
 
 int main() {
 
-/*
+
     autoFantastico();
 
     autoFantasticoAlg();
@@ -97,7 +97,7 @@ int main() {
     choque();
 
     pool();
-*/
+
     tenis();
 
 
