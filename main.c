@@ -85,7 +85,6 @@ int main() {
     if(login() == 0){
         printf("\nContraseña correcta\n");
     }else{
-        printf("\nContraseña incorrecta\n");
         return 0;
     }
     int n;
@@ -119,11 +118,17 @@ int login(){
     int error = 0;
     char c;
     char ingreso[5];
-    for(int i = 0; i < 5; i++){
-        c = getch();
-        ingreso[i] = c;
-        printw("*");
-    }
+    do {
+        for (int i = 0; i < 5; i++) {
+            c = getch();
+            ingreso[i] = c;
+            printw("*");
+        }
+        if(strcmp(password, ingreso) != 0){
+            error++;
+            printw("\n Contraseña Incorrecta \n");
+        }
+    }while(error < 3 && strcmp(password, ingreso) != 0);
     echo();
     endwin();
     return strcmp(password, ingreso);
