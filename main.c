@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static const int DELAY = 15;
+static const int DELAY = 7;
 
 void output(unsigned char);
 void autoFantastico();
@@ -14,6 +14,7 @@ void choque();
 void tenis();
 void tenis2();
 //globals para funciones por tabla
+
 
 unsigned char datosAuto[]= {
         0x80,
