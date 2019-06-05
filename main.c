@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 static const int DELAY = 7;
 
 void output(unsigned char);
@@ -73,24 +73,34 @@ unsigned char datosTenis[] ={
         0xC1,
 };
 
+char password;
+
 int main() {
 
-    autoFantastico();
-
-    autoFantasticoAlg();
-
-    carrera();
-
-    choque();
-
-    pool();
-
-    tenis();
-
-    tenis2();
+    strcpy(password, "cheto");
+    if(login() == 0){
+        printf("Ok");
+    }else{
+        printf("Contraseña incorrecta");
+        return 0;
+    }
 
     return 0;
 }
+
+
+int login(){
+    int error = 0;
+    char ingreso[5];
+    for(int i = 0; i < 5; i++){
+        ingreso[i] = getch();
+        printf("*");
+    }
+
+    return strcmp(password, ingreso);
+
+}
+
 
 void delayc(int a){
     for(int j=0;j<a;j++){
