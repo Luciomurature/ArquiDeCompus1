@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ncurses.h>
+
 static const int DELAY = 7;
 
+
+int login();
 void output(unsigned char);
 void autoFantastico();
 void delayc(int);
@@ -13,7 +17,6 @@ void pool();
 void choque();
 void tenis();
 void tenis2();
-//globals para funciones por tabla
 
 
 unsigned char datosAuto[]= {
@@ -73,16 +76,37 @@ unsigned char datosTenis[] ={
         0xC1,
 };
 
-char password;
+char password[6];
 
 int main() {
 
-    strcpy(password, "cheto");
+    strcpy(password, "kevin");
+
     if(login() == 0){
-        printf("Ok");
+        printf("\nContraseña correcta\n");
     }else{
-        printf("Contraseña incorrecta");
+        printf("\nContraseña incorrecta\n");
         return 0;
+    }
+    int n;
+    printf ("Ingrese caso");
+    n = getchar();
+    switch(n){
+        case '0':
+            autoFantastico();
+            break;
+        case '1':
+            choque();
+            break;
+        case '2':
+            pool();
+            break;
+        case '3':
+            tenis();
+            break;
+        case '4':
+            carrera();
+            break;
     }
 
     return 0;
@@ -90,16 +114,30 @@ int main() {
 
 
 int login(){
+    initscr();
+    noecho();
     int error = 0;
+    char c;
     char ingreso[5];
     for(int i = 0; i < 5; i++){
-        ingreso[i] = getch();
-        printf("*");
+        c = getch();
+        ingreso[i] = c;
+        printw("*");
     }
-
+    echo();
+    endwin();
     return strcmp(password, ingreso);
 
 }
+
+
+
+
+
+
+
+
+
 
 
 void delayc(int a){
