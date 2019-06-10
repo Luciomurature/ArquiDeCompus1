@@ -3,9 +3,9 @@
 #include <string.h>
 #include <ncurses.h>
 
-static const int DELAY = 7;
+static const int DELAY = 10;
 
-
+void menu();
 int login();
 void output(unsigned char);
 void autoFantastico();
@@ -17,6 +17,10 @@ void pool();
 void choque();
 void tenis();
 void tenis2();
+void suicide();
+
+
+int ejec = 1;
 
 
 unsigned char datosAuto[]= {
@@ -76,6 +80,71 @@ unsigned char datosTenis[] ={
         0xC1,
 };
 
+
+
+
+unsigned char datosSuicide[]={
+    0x80,
+    0x40,
+    0x80,
+    0x40,
+    0x20,
+    0x40,
+    0x80,
+    0x40,
+    0x20,
+    0x10,
+    0x20,
+    0x40,
+    0x80,
+    0x40,
+    0x20,
+    0x10,
+    0x08,
+    0x10,
+    0x20,
+    0x40,
+    0x80,
+    0x40,
+    0x20,
+    0x10,
+    0x08,
+    0x04,
+    0x08,
+    0x10,
+    0x20,
+    0x40,
+    0x80,
+    0x40,
+    0x20,
+    0x10,
+    0x08,
+    0x04,
+    0x02,
+    0x04,
+    0x08,
+    0x10,
+    0x20,
+    0x40,
+    0x80,
+    0x40,
+    0x20,
+    0x10,
+    0x08,
+    0x04,
+    0x02,
+    0x01,
+    0x02,
+    0x04,
+    0x08,
+    0x10,
+    0x20,
+    0x40,
+    0x80,
+};
+
+
+
 char password[6];
 
 int main() {
@@ -84,31 +153,73 @@ int main() {
 
     if(login() == 0){
         printf("\nContraseña correcta\n");
+
+        menu();
     }else{
         return 0;
     }
-    int n;
-    printf ("Ingrese caso");
-    n = getchar();
-    switch(n){
-        case '0':
-            autoFantastico();
-            break;
-        case '1':
-            choque();
-            break;
-        case '2':
-            pool();
-            break;
-        case '3':
-            tenis();
-            break;
-        case '4':
-            carrera();
-            break;
-    }
 
     return 0;
+}
+
+
+void menu(){
+
+    int state = 0;
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\nBienvenidos al proyecto de Arquitectura de Software I por Murature y Schroder \n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+    do{
+    char n;
+    printf("\n1- Auto fantastico\n");
+	printf("\n2- El choque\n");
+	printf("\n3- Pool\n");
+	printf("\n4- Tenis\n");
+    printf("\n5- Carrera\n");
+    printf("\n6- Suicida\n");
+	printf("\n0- Salir\n");	
+
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+
+    n = getchar();
+    switch(n){
+        case'0':
+             state = 1;
+             break;
+        case '1':
+            do{
+                autoFantastico();
+            }while(ejec);
+            break;
+        case '2':
+            do{
+                choque();
+            }while(ejec);
+            break;
+        case '3':
+            do{
+                pool();
+                }while(ejec);
+            break;
+        case '4':
+            do{
+                tenis();
+               }while(ejec);
+            break;
+        case '5':
+            do{
+                carrera();
+              }while(ejec);
+            break;
+        case '6':
+        do{
+            suicide();
+        }while(ejec);
+            break;
+        default:
+            break;
+    }
+    }while(!state);
 }
 
 
@@ -195,7 +306,7 @@ void autoFantastico() {
         output(datosAuto[i]);
         delayc(DELAY);
     }
-    for(int i = 7; i > 0; i--){
+    for(int i = 7; i != 0; i--){
         output(datosAuto[i]);
         delayc(DELAY);
     }
@@ -234,3 +345,12 @@ void tenis2(){
         i*=2;
     }while (i<65);
 }
+
+void suicide(){
+    for(int i = 0; i < 57 ; i++){
+        output(datosSuicide[i]);
+        delayc(DELAY);
+    }
+}
+
+

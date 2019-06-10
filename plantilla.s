@@ -21,7 +21,7 @@ array:
 
 
 /*
-
+gcc main.c -lncurses -o main
 gcc -g plantilla.s -o prueba1
 
 -g 
