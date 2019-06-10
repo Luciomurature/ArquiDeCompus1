@@ -18,8 +18,7 @@ void choque();
 void tenis();
 void tenis2();
 void suicide();
-int kbhit(void);
-
+int ciclo();
 
 int ejec = 1;
 
@@ -190,7 +189,7 @@ void menu(){
         case '1':
             do{
                 autoFantastico();
-            }while(!kbhit());
+            }while(ciclo());      
             break;
         case '2':
             do{
@@ -223,6 +222,20 @@ void menu(){
     }while(!state);
 }
 
+int ciclo(){
+    initscr();
+    noecho();
+    int n;
+    n = getch();
+    if(n=='\n')
+        return 0;
+    else {
+        echo();
+        endwin(); 
+        return 1;
+    }
+  
+}
 
 int login(){
     initscr();
