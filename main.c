@@ -152,6 +152,7 @@ int main() {
 
     strcpy(password, "kevin");
 
+
     if(login() == 0){
         printf("\nContraseña correcta\n");
 
@@ -164,10 +165,10 @@ int main() {
 
 
 void menu(){
-    system("clear");
+
     int state = 0;
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\nBienvenidos al proyecto de Arquitectura de Software I por Murature y Schroder \n");
+    printf("\nBienvenidos al proyecto de Arquitectura de Software I por Murature y Schröder \n");
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     do{
     char n;
@@ -182,6 +183,7 @@ void menu(){
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
 
     n = getchar();
+
     switch(n){
         case'0':
              state = 1;
@@ -239,6 +241,8 @@ int login(){
     char c;
     char ingreso[5];
     do {
+        printw("Ingrese su password de 5 dígitos:\n");
+
         for (int i = 0; i < 5; i++) {
             c = getch();
             ingreso[i] = c;
