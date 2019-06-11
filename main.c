@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ncurses.h>
+#include <termios.h>
+#include <sys/ioctl.h>
 
 static const int DELAY = 10;
 
@@ -18,9 +20,8 @@ void choque();
 void tenis();
 void tenis2();
 void suicide();
-int ciclo();
+bool kbhit();
 
-int ejec = 1;
 
 
 unsigned char datosAuto[]= {
@@ -158,13 +159,12 @@ int main() {
     }else{
         return 0;
     }
-
     return 0;
 }
 
 
 void menu(){
-
+    system("clear");
     int state = 0;
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("\nBienvenidos al proyecto de Arquitectura de Software I por Murature y Schroder \n");
@@ -189,32 +189,32 @@ void menu(){
         case '1':
             do{
                 autoFantastico();
-            }while(ciclo());      
+            }while (!kbhit());
             break;
         case '2':
             do{
                 choque();
-            }while(ejec);
+            }while(!kbhit());
             break;
         case '3':
             do{
                 pool();
-                }while(ejec);
+                }while(!kbhit());
             break;
         case '4':
             do{
                 tenis();
-               }while(ejec);
+               }while(!kbhit());
             break;
         case '5':
             do{
                 carrera();
-              }while(ejec);
+              }while(!kbhit());
             break;
         case '6':
         do{
             suicide();
-        }while(ejec);
+        }while(!kbhit());
             break;
         default:
             break;
@@ -222,19 +222,14 @@ void menu(){
     }while(!state);
 }
 
-int ciclo(){
-    initscr();
-    noecho();
-    int n;
-    n = getch();
-    if(n=='\n')
-        return 0;
-    else {
-        echo();
-        endwin(); 
-        return 1;
-    }
-  
+
+
+
+
+bool kbhit(){
+    int byteswaiting;
+    ioctl(0, FIONREAD, &byteswaiting);
+    return byteswaiting > 0;
 }
 
 int login(){
