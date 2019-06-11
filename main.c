@@ -5,7 +5,15 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 
-static const int DELAY = 10;
+static const int DELAYBAJO = 3;
+static const int DELAYBAJO1 = 5;
+static const int DELAYBAJO2 = 8;
+static const int DELAYMEDIO = 10;
+static const int DELAYMEDIO2 = 12;
+static const int DELAYALTO = 15;
+static const int DELAYALTO1 = 18;
+static const int DELAYALTO2 = 20;
+
 
 void menu();
 int login();
@@ -21,7 +29,6 @@ void tenis();
 void tenis2();
 void suicide();
 bool kbhit();
-
 
 
 unsigned char datosAuto[]= {
@@ -165,7 +172,7 @@ int main() {
 
 
 void menu(){
-
+    system("clear");
     int state = 0;
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("\nBienvenidos al proyecto de Arquitectura de Software I por Murature y Schröder \n");
@@ -189,8 +196,9 @@ void menu(){
              state = 1;
              break;
         case '1':
+            printf("\nPresione enter para salir\n");
             do{
-                autoFantastico();
+                autoFantasticoAlg();
             }while (!kbhit());
             break;
         case '2':
@@ -263,16 +271,10 @@ int login(){
 
 
 
-
-
-
-
-
-
-void delayc(int a){
-    for(int j=0;j<a;j++){
+void delayc(int a) {
+    for (int j = 0; j < a; j++) {
         unsigned int i = 0x4fffff; //raspberry 0x3fffff
-        while(i)i--;
+        while (i)i--;
     }
 }
 
@@ -289,16 +291,16 @@ void output(unsigned char b){
 
 void autoFantasticoAlg() {
     output(1);
-    delayc(DELAY);
+    delayc(DELAYMEDIO);
     int i = 2;
     do {
         output(i);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
         i *= 2;
     } while (i <= 64);
     do {
         output(i);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
         i /= 2;
     } while (i > 0);
 }
@@ -307,7 +309,7 @@ void pool(){
     int i = 128;
     do{
         output(i+16);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
         if (i==32)
             i/=2;
         i /=2;
@@ -317,31 +319,31 @@ void pool(){
 void autoFantastico() {
     for(int i = 0; i < 8; i++){
         output(datosAuto[i]);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
     }
     for(int i = 7; i != 0; i--){
         output(datosAuto[i]);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
     }
 }
 
 void carrera(){
     for(int i = 0; i < 16; i++){
         output(datosCarrera[i]);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
     }
 }
 void choque(){
     for(int i = 0; i < 8; i++){
         output(datosChoque[i]);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
     }
 }
 
 void tenis(){
     for(int i = 0; i < 13; i++){
         output(datosTenis[i]);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
     }
 }
 
@@ -349,12 +351,12 @@ void tenis2(){
     int i = 64;
     do {
         output(i + 129);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
         i/=2;
     }while(i>2);
     do{
         output(i+129);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
         i*=2;
     }while (i<65);
 }
@@ -362,7 +364,7 @@ void tenis2(){
 void suicide(){
     for(int i = 0; i < 57 ; i++){
         output(datosSuicide[i]);
-        delayc(DELAY);
+        delayc(DELAYMEDIO);
     }
 }
 
