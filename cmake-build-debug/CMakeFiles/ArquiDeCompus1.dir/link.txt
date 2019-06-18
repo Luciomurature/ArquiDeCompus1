@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/ArquiDeCompus1.dir/main.c.o  -o ArquiDeCompus1 

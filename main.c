@@ -5,6 +5,8 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 
+// pioInit(), 
+
 int DELAY = 20;
 
 void panel();

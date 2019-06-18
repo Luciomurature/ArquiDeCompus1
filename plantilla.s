@@ -30,23 +30,4 @@ gcc -g plantilla.s -o prueba1
 
 debugger: ddd nombre.s, pongo breakpoints en main y done 
 
-
-10000001
-11000001
-10100001
-10010001
-10001001
-10000101
-10000011
-
-11000111
-11001011
-11010011
-11100011
-
-
-
-
-
-
 */
