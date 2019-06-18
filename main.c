@@ -4,12 +4,10 @@
 #include <ncurses.h>
 #include <termios.h>
 #include <sys/ioctl.h>
+#include "outputLED.h"
 #include "EasyPIO.h"
-#include "output.h"
-
-// pioInit(), 
-
 int DELAY = 20;
+
 
 void panel();
 void menu();
@@ -148,7 +146,7 @@ unsigned char datosSuicide[]={
 char password[6];
 
 int main() {
-
+    pioInit();
     strcpy(password, "kevin");
 
 
@@ -261,6 +259,18 @@ int login(){
     return strcmp(password, ingreso);
 
 }
+void output(unsigned char b){
+    initscr();
+    for(int i = 8; i > 0; i--){
+        if((b&1) == 1){
+            printw("*");
+        }else printw("_");
+        b = b >> 1;
+    }
+    printw("\r");
+    fflush(stdout);
+    endwin();
+}
 
 
 int tomadelay(int n){
@@ -313,15 +323,18 @@ int delayc(int a) {
 
 void autoFantasticoAlg() {
     output(1);
+    outputLED(1);
     DELAY = delayc(DELAY);
     int i = 2;
     do {
         output(i);
+        outputLED(i);
         DELAY = delayc(DELAY);
         i *= 2;
     } while (i <= 64);
     do {
         output(i);
+        outputLED(i);
         DELAY = delayc(DELAY);
         i /= 2;
     } while (i > 0);
@@ -331,6 +344,7 @@ void  pool(){
     int i = 128;
     do{
         output(i+16);
+        outputLED(i+16);
         DELAY = delayc(DELAY);
         if (i==32)
             i/=2;
@@ -341,10 +355,12 @@ void  pool(){
 void autoFantastico() {
     for(int i = 0; i < 8; i++){
         output(datosAuto[i]);
+        outputLED(datosAuto[i]);
         DELAY = delayc(DELAY);
     }
     for(int i = 7; i != 0; i--){
         output(datosAuto[i]);
+        outputLED(datosAuto[i]);
         DELAY = delayc(DELAY);
     }
 }
@@ -352,12 +368,14 @@ void autoFantastico() {
 void carrera(){
     for(int i = 0; i < 16; i++){
         output(datosCarrera[i]);
+        outputLED(datosCarrera[i]);
         DELAY = delayc(DELAY);
     }
 }
 void choque(){
     for(int i = 0; i < 8; i++){
         output(datosChoque[i]);
+        outputLED(datosChoque[i]);
         DELAY = delayc(DELAY);
     }
 }
@@ -365,6 +383,7 @@ void choque(){
 void tenis(){
     for(int i = 0; i < 13; i++){
         output(datosTenis[i]);
+        outputLED(datosTenis[i]);
         DELAY = delayc(DELAY);
     }
 }
@@ -373,11 +392,13 @@ void tenis2(){
     int i = 64;
     do {
         output(i + 129);
+        outputLED(i+129);
         DELAY = delayc(DELAY);
         i/=2;
     }while(i>2);
     do{
         output(i+129);
+        outputLED(i+129);
         DELAY = delayc(DELAY);
         i*=2;
     }while (i<65);
@@ -386,6 +407,7 @@ void tenis2(){
 void suicide(){
     for(int i = 0; i < 57 ; i++){
         output(datosSuicide[i]);
+        outputLED(datosSuicide[i]);
         DELAY = delayc(DELAY);
     }
 }
