@@ -5,23 +5,21 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 
-int DELAY =12;
+int DELAY = 20;
 
+void panel();
 void menu();
 int login();
 void output(unsigned char);
 void autoFantastico();
 int delayc(int);
 void autoFantasticoAlg();
-void menu();
 void carrera();
 void pool();
 void choque();
 void tenis();
 void tenis2();
 void suicide();
-int kbhit();
-int tecla();
 
 
 unsigned char datosAuto[]= {
@@ -85,66 +83,64 @@ unsigned char datosTenis[] ={
 
 
 unsigned char datosSuicide[]={
-    0x80,
-    0x40,
-    0x80,
-    0x40,
-    0x20,
-    0x40,
-    0x80,
-    0x40,
-    0x20,
-    0x10,
-    0x20,
-    0x40,
-    0x80,
-    0x40,
-    0x20,
-    0x10,
-    0x08,
-    0x10,
-    0x20,
-    0x40,
-    0x80,
-    0x40,
-    0x20,
-    0x10,
-    0x08,
-    0x04,
-    0x08,
-    0x10,
-    0x20,
-    0x40,
-    0x80,
-    0x40,
-    0x20,
-    0x10,
-    0x08,
-    0x04,
-    0x02,
-    0x04,
-    0x08,
-    0x10,
-    0x20,
-    0x40,
-    0x80,
-    0x40,
-    0x20,
-    0x10,
-    0x08,
-    0x04,
-    0x02,
-    0x01,
-    0x02,
-    0x04,
-    0x08,
-    0x10,
-    0x20,
-    0x40,
-    0x80,
+        0x80,
+        0x40,
+        0x80,
+        0x40,
+        0x20,
+        0x40,
+        0x80,
+        0x40,
+        0x20,
+        0x10,
+        0x20,
+        0x40,
+        0x80,
+        0x40,
+        0x20,
+        0x10,
+        0x08,
+        0x10,
+        0x20,
+        0x40,
+        0x80,
+        0x40,
+        0x20,
+        0x10,
+        0x08,
+        0x04,
+        0x08,
+        0x10,
+        0x20,
+        0x40,
+        0x80,
+        0x40,
+        0x20,
+        0x10,
+        0x08,
+        0x04,
+        0x02,
+        0x04,
+        0x08,
+        0x10,
+        0x20,
+        0x40,
+        0x80,
+        0x40,
+        0x20,
+        0x10,
+        0x08,
+        0x04,
+        0x02,
+        0x01,
+        0x02,
+        0x04,
+        0x08,
+        0x10,
+        0x20,
+        0x40,
+        0x80,
 };
-
-int ejec = 1;
 
 char password[6];
 
@@ -155,8 +151,8 @@ int main() {
 
     if(login() == 0){
         printf("\nContraseña correcta\n");
-
-        menu();
+        panel();
+            return 0;
     }else{
         return 0;
     }
@@ -164,96 +160,79 @@ int main() {
 }
 
 
-void menu(){
-    int state = 0;
+void panel() {
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("\nBienvenidos al proyecto de Arquitectura de Software I por Murature y Schröder \n");
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+    menu();
+}
+
+void menu(){
     do{
-    char n;
-    printf("\n1- Auto fantastico\n");
-	printf("\n2- El choque\n");
-	printf("\n3- Pool\n");
-	printf("\n4- Tenis\n");
-    printf("\n5- Carrera\n");
-    printf("\n6- Suicida\n");
-	printf("\n0- Salir\n");	
+            char n;
+        printf("\n1- Auto fantastico\n");
+        printf("\n2- El choque\n");
+        printf("\n3- Pool\n");
+        printf("\n4- Tenis\n");
+        printf("\n5- Carrera\n");
+        printf("\n6- Suicida\n");
+        printf("\n0- Salir\n");
 
-    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+            printf("\n/////////////////////////////////////////////////////////////////////////////\n");
 
-    n = getchar();
-
-        switch(n){
-        case'0':
-             state = 1;
-             break;
-        case '1':
-            printf("\nPresione enter para salir\n");
-            do{
-                autoFantasticoAlg();
-            }while (tecla() == 1);
+            n = getchar();
+            initscr();
+            clear();
+            switch(n){
+            case'0':
+                exit(-1);
+            case '1':
+                printw("Auto fantastico");
+                printw("\nPresione f para salir\n");
+                do{
+                    autoFantasticoAlg();
+                }while (TRUE);
+            case '2':
+                clear();
+                printw("El choque");
+                printw("\nPresione f para salir\n");
+                do{
+                    choque();
+                }while(TRUE);
+            case '3':
+                clear();
+                printw("Pool");
+                printw("\nPresione f para salir\n");
+                do{
+                    pool();
+                }while(TRUE);
+            case '4':
+                clearenv();
+                printw("Tenis");
+                printw("\nPresione f para salir\n");
+                do{
+                    tenis();
+                }while(TRUE);
+            case '5':
+                clearenv();
+                printw("Carrera");
+                printw("\nPresione f para salir\n");
+                do{
+                    carrera();
+                }while(TRUE);
+            case '6':
+                clear();
+                printw("Suicida");
+                printw("\nPresione f para salir\n");
+                do{
+                    suicide();
+                }while(TRUE);
+            default:
             break;
-        case '2':
-            do{
-                choque();
-            }while(!kbhit());
-            break;
-        case '3':
-            do{
-                pool();
-                }while(!kbhit());
-            break;
-        case '4':
-            do{
-                tenis();
-               }while(!kbhit());
-            break;
-        case '5':
-            do{
-                carrera();
-              }while(!kbhit());
-            break;
-        case '6':
-        do{
-            suicide();
-        }while(!kbhit());
-            break;
-        default:
-            break;
-    }
-    }while(!state);
+            }
+        }while(TRUE);
 }
 
-
-
-int tecla (){
-    initscr();
-    noecho();
-    int b;
-    if(kbhit()){
-        b = getch();
-        if (b==13){
-            echo();
-            endwin();
-            return 0;
-        }
-        else{
-            echo();
-            endwin();
-            return 1;
-        }
-    } else{
-        echo();
-        endwin();
-        return 1;
-    }
-}
-
-int kbhit(){
-    int byteswaiting;
-    ioctl(0, FIONREAD, &byteswaiting);
-    return byteswaiting > 0;
-}
 
 int login(){
     initscr();
@@ -282,33 +261,45 @@ int login(){
 
 
 int tomadelay(int n){
-    if (n==1){
-        DELAY= DELAY+2;
-        return  DELAY;
+    if (DELAY<44) {
+        if (n == 0) {
+            DELAY = DELAY + 4;
+            return DELAY;
+        }
     }
-    if (n==0){
-        DELAY = DELAY-2;
-        return  DELAY;
-    }
+    if (DELAY>4)
+        if (n==1){
+            DELAY= DELAY-4;
+            return  DELAY;
+        }
+    return DELAY;
 }
 
 
 int delayc(int a) {
     initscr();
     noecho();
-        if (kbhit()){
-            int c = getch();
-            if(c == KEY_UP){
-                a = tomadelay(1);
-            }
-            if(c==KEY_DOWN){
-                a = tomadelay(0);
-            }
-        }
-        for (int j = 0; j < a; j++) {
+    cbreak();
+    int c;
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
+    c = getch();
+    nocbreak();
+    if(c == KEY_UP){
+        a = tomadelay(1);
+    }
+    if(c==KEY_DOWN){
+        a = tomadelay(0);
+    }
+    if (c==102){ //finaliza con f, cbreak no me deja con intro
+        echo();
+        endwin();
+        menu();
+    }
+    for (int j = 0; j < a; j++) {
         unsigned int i = 0x4fffff; //raspberry 0x3fffff
         while (i)i--;
-        }
+    }
     echo();
     endwin();
     return  a;
@@ -316,14 +307,16 @@ int delayc(int a) {
 
 
 void output(unsigned char b){
-        for(int i = 8; i > 0; i--){
-            if((b&1) == 1){
-                printf("*");
-            }else printf("_");
-            b = b >> 1;
-        }
-        printf("\r");
-        fflush(stdout);
+    initscr();
+    for(int i = 8; i > 0; i--){
+        if((b&1) == 1){
+            printw("*");
+        }else printw("_");
+        b = b >> 1;
+    }
+    printw("\r");
+    fflush(stdout);
+    endwin();
 }
 
 void autoFantasticoAlg() {
@@ -342,11 +335,11 @@ void autoFantasticoAlg() {
     } while (i > 0);
 }
 
-void pool(){
+void  pool(){
     int i = 128;
     do{
         output(i+16);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
         if (i==32)
             i/=2;
         i /=2;
@@ -356,31 +349,31 @@ void pool(){
 void autoFantastico() {
     for(int i = 0; i < 8; i++){
         output(datosAuto[i]);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
     }
     for(int i = 7; i != 0; i--){
         output(datosAuto[i]);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
     }
 }
 
 void carrera(){
     for(int i = 0; i < 16; i++){
         output(datosCarrera[i]);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
     }
 }
 void choque(){
     for(int i = 0; i < 8; i++){
         output(datosChoque[i]);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
     }
 }
 
 void tenis(){
     for(int i = 0; i < 13; i++){
         output(datosTenis[i]);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
     }
 }
 
@@ -388,12 +381,12 @@ void tenis2(){
     int i = 64;
     do {
         output(i + 129);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
         i/=2;
     }while(i>2);
     do{
         output(i+129);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
         i*=2;
     }while (i<65);
 }
@@ -401,7 +394,7 @@ void tenis2(){
 void suicide(){
     for(int i = 0; i < 57 ; i++){
         output(datosSuicide[i]);
-        delayc(DELAY);
+        DELAY = delayc(DELAY);
     }
 }
 
