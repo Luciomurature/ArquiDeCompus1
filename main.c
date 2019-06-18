@@ -4,6 +4,8 @@
 #include <ncurses.h>
 #include <termios.h>
 #include <sys/ioctl.h>
+#include "EasyPIO.h"
+#include "output.h"
 
 // pioInit(), 
 
@@ -12,7 +14,6 @@ int DELAY = 20;
 void panel();
 void menu();
 int login();
-void output(unsigned char);
 void autoFantastico();
 int delayc(int);
 void autoFantasticoAlg();
@@ -308,18 +309,7 @@ int delayc(int a) {
 }
 
 
-void output(unsigned char b){
-    initscr();
-    for(int i = 8; i > 0; i--){
-        if((b&1) == 1){
-            printw("*");
-        }else printw("_");
-        b = b >> 1;
-    }
-    printw("\r");
-    fflush(stdout);
-    endwin();
-}
+
 
 void autoFantasticoAlg() {
     output(1);
