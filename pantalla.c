@@ -20,7 +20,7 @@ void tenis();
 void tenis2();
 void suicide();
 
-const char led[] = {14,15,18,23,24,25,8,7};
+const char led[] = {7,8,25,24,23,18,15,14};
 
 unsigned char datosAuto[]= {
         0x80,

@@ -1,20 +1,27 @@
 // prj.s
 // 22 de Mayo de 2019
 // Arqui I UCC
-
 .text
 
-.global main
-main:
-      LDR R3, = array // load base address of a into R3
-      loop:
-          MOV R0,#16
-          SUBS R0,R0,#1
-          LD outpu
-          
-      BL 
-done: NOP            // dummy instruction for breakpoint instruccion boba, que no hace nada
-      BX LR          // return from main
+.extern outputLED
+.extern delayc
+.global inicializar
+
+
+
+inicializar:
+    MOV R1,#0
+    MOV R2,#20
+loop:
+     LDR R3, = array // load base address of a into R3
+     LDRB R3,[R3,R1]
+     ADD R1,R1,#1
+     MOV R0,R1
+     BL outputLED
+     MOV R0,R2
+     BL delayc
+     MOV R2,R0
+     AL loop
 
 .data
 array:
@@ -39,12 +46,13 @@ array:
 
 /*
 gcc main.c -lncurses -o main
-gcc -g plantilla.s -o prueba1
+gcc -g carrera2.s -o prueba1
 
--g 
+-g
 -o es para generar con el nombre prueba1
 
 
-debugger: ddd nombre.s, pongo breakpoints en main y done 
+debugger: ddd nombre.s, pongo breakpoints en main y done
 
 */
+

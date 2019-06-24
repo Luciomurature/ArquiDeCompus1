@@ -23,7 +23,7 @@ void suicide();
 void outputLED(unsigned char);
 
 
-const char led[] = {14,15,18,23,24,25,8,7};
+const char led[] = {7,8,25,24,23,18,15,14};
 
 unsigned char datosAuto[]= {
         0x80,
@@ -146,6 +146,7 @@ unsigned char datosSuicide[]={
 };
 
 char password[6];
+int ejec;
 
 int main() {
     pioInit();
@@ -174,6 +175,7 @@ void panel() {
 }
 
 void menu(){
+    ejec = 1;
     do{
             char n;
         printf("\n1- Auto fantastico\n");
@@ -197,42 +199,42 @@ void menu(){
                 printw("\nPresione f para salir\n");
                 do{
                     autoFantasticoAlg();
-                }while (TRUE);
+                }while (ejec);
             case '2':
                 clear();
                 printw("El choque");
                 printw("\nPresione f para salir\n");
                 do{
                     choque();
-                }while(TRUE);
+                }while(ejec);
             case '3':
                 clear();
                 printw("Pool");
                 printw("\nPresione f para salir\n");
                 do{
                     pool();
-                }while(TRUE);
+                }while(ejec);
             case '4':
                 clearenv();
                 printw("Tenis");
                 printw("\nPresione f para salir\n");
                 do{
                     tenis();
-                }while(TRUE);
+                }while(ejec);
             case '5':
                 clearenv();
                 printw("Carrera");
                 printw("\nPresione f para salir\n");
                 do{
                     carrera();
-                }while(TRUE);
+                }while(ejec);
             case '6':
                 clear();
                 printw("Suicida");
                 printw("\nPresione f para salir\n");
                 do{
                     suicide();
-                }while(TRUE);
+                }while(ejec);
             default:
             break;
             }
@@ -324,6 +326,7 @@ int delayc(int a) {
     if (c==102){ //finaliza con f, cbreak no me deja con intro
         echo();
         endwin();
+        ejec = 0;
         menu();
     }
     for (int j = 0; j < a; j++) {
