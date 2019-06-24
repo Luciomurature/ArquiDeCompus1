@@ -9,10 +9,10 @@
 
 
 
-inicializar:
+init_carrera:
     MOV R1,#0
     MOV R2,#20
-loop:
+repite:
      LDR R3, = array // load base address of a into R3
      LDRB R3,[R3,R1]
      ADD R1,R1,#1
@@ -21,7 +21,7 @@ loop:
      MOV R0,R2
      BL delayc
      MOV R2,R0
-     AL loop
+     AL repite
 
 .data
 array:

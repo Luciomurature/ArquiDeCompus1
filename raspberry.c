@@ -5,8 +5,10 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 #include "EasyPIO.h"
-int DELAY = 20;
 
+extern void init_carrera();
+extern void init_pool();
+int DELAY = 20;
 
 void panel();
 void menu();
@@ -212,7 +214,7 @@ void menu(){
                 printw("Pool");
                 printw("\nPresione f para salir\n");
                 do{
-                    pool();
+                    init_pool();
                 }while(ejec);
             case '4':
                 clearenv();
@@ -226,7 +228,7 @@ void menu(){
                 printw("Carrera");
                 printw("\nPresione f para salir\n");
                 do{
-                    carrera();
+                    init_carrera();
                 }while(ejec);
             case '6':
                 clear();
@@ -242,14 +244,10 @@ void menu(){
 }
 
 void outputLED(unsigned char b){
-    
-    const char sw[] = {12,16,20,21};
-    for(int i = 8; i > 0; i--){
-        if((b&1) == 1){
-            //prender
-            digitalWrite(led[i], 0);
-        }else digitalWrite(led[i], 1); //apagar
-        b = b >> 1;
+    for (int i = 7; i >= 0; --i) {
+        char tmp = (b & (1 << i)) ? '*' : '_';
+        int status = (b & (1 << i)) ? 0 : 1;
+        digitalWrite(led[i], status);
     }
 }
 

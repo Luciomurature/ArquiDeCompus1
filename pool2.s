@@ -5,7 +5,7 @@
 .global inicializar
 
 
-inicializar:
+init_pool:
     MOV R2,#20
 pool:
     MOV R1,#128
@@ -23,5 +23,4 @@ loop:
      CMP R1,#1
      BEQ pool
      BNE loop
-
 .end
