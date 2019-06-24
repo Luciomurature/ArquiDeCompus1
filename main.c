@@ -235,7 +235,7 @@ void menu(){
 }
 
 void outputLED(unsigned char b){
-    const char led[] = {7,8,25,24,23,18,15,14};
+    const char led[] = {14,15,18,23,24,25,8,7};
     const char sw[] = {12,16,20,21};
     for(int i = 8; i > 0; i--){
         if((b&1) == 1){
