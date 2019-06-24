@@ -235,13 +235,13 @@ void menu(){
 }
 
 void outputLED(unsigned char b){
-    const char led[] = {14,15,18,23,25,8,7};
+    const char led[] = {7,8,25,24,23,18,15,14};
     const char sw[] = {12,16,20,21};
     for(int i = 8; i > 0; i--){
         if((b&1) == 1){
             //prender
-            digitalWrite(led[i], OUTPUT);
-        }else digitalWrite(led[i], 0); //apagar
+            digitalWrite(led[i], 0);
+        }else digitalWrite(led[i], 1); //apagar
         b = b >> 1;
     }
 }
