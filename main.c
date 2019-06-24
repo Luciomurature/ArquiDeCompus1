@@ -23,6 +23,8 @@ void suicide();
 void outputLED(unsigned char);
 
 
+const char led[] = {14,15,18,23,24,25,8,7};
+
 unsigned char datosAuto[]= {
         0x80,
         0x40,
@@ -147,6 +149,9 @@ char password[6];
 
 int main() {
     pioInit();
+    for (int i=0; i<8;i++){
+        pinMode(led[i], OUTPUT);
+    }
     strcpy(password, "kevin");
 
 
@@ -235,7 +240,7 @@ void menu(){
 }
 
 void outputLED(unsigned char b){
-    const char led[] = {14,15,18,23,24,25,8,7};
+    
     const char sw[] = {12,16,20,21};
     for(int i = 8; i > 0; i--){
         if((b&1) == 1){
