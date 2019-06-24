@@ -20,8 +20,6 @@ void choque();
 void tenis();
 void tenis2();
 void suicide();
-void outputLED(unsigned char);
-
 
 const char led[] = {14,15,18,23,24,25,8,7};
 
@@ -148,10 +146,6 @@ unsigned char datosSuicide[]={
 char password[6];
 
 int main() {
-    pioInit();
-    for (int i=0; i<8;i++){
-        pinMode(led[i], OUTPUT);
-    }
     strcpy(password, "kevin");
 
 
@@ -237,18 +231,6 @@ void menu(){
             break;
             }
         }while(TRUE);
-}
-
-void outputLED(unsigned char b){
-    
-    const char sw[] = {12,16,20,21};
-    for(int i = 8; i > 0; i--){
-        if((b&1) == 1){
-            //prender
-            digitalWrite(led[i], 0);
-        }else digitalWrite(led[i], 1); //apagar
-        b = b >> 1;
-    }
 }
 
 
@@ -340,18 +322,15 @@ int delayc(int a) {
 
 void autoFantasticoAlg() {
     output(1);
-    outputLED(1);
     DELAY = delayc(DELAY);
     int i = 2;
     do {
         output(i);
-        outputLED(i);
         DELAY = delayc(DELAY);
         i *= 2;
     } while (i <= 64);
     do {
         output(i);
-        outputLED(i);
         DELAY = delayc(DELAY);
         i /= 2;
     } while (i > 0);
@@ -361,7 +340,6 @@ void  pool(){
     int i = 128;
     do{
         output(i+16);
-        outputLED(i+16);
         DELAY = delayc(DELAY);
         if (i==32)
             i/=2;
@@ -372,12 +350,10 @@ void  pool(){
 void autoFantastico() {
     for(int i = 0; i < 8; i++){
         output(datosAuto[i]);
-        outputLED(datosAuto[i]);
         DELAY = delayc(DELAY);
     }
     for(int i = 7; i != 0; i--){
         output(datosAuto[i]);
-        outputLED(datosAuto[i]);
         DELAY = delayc(DELAY);
     }
 }
@@ -385,14 +361,12 @@ void autoFantastico() {
 void carrera(){
     for(int i = 0; i < 16; i++){
         output(datosCarrera[i]);
-        outputLED(datosCarrera[i]);
         DELAY = delayc(DELAY);
     }
 }
 void choque(){
     for(int i = 0; i < 8; i++){
         output(datosChoque[i]);
-        outputLED(datosChoque[i]);
         DELAY = delayc(DELAY);
     }
 }
@@ -400,7 +374,6 @@ void choque(){
 void tenis(){
     for(int i = 0; i < 13; i++){
         output(datosTenis[i]);
-        outputLED(datosTenis[i]);
         DELAY = delayc(DELAY);
     }
 }
@@ -409,13 +382,11 @@ void tenis2(){
     int i = 64;
     do {
         output(i + 129);
-        outputLED(i+129);
         DELAY = delayc(DELAY);
         i/=2;
     }while(i>2);
     do{
         output(i+129);
-        outputLED(i+129);
         DELAY = delayc(DELAY);
         i*=2;
     }while (i<65);
@@ -424,7 +395,6 @@ void tenis2(){
 void suicide(){
     for(int i = 0; i < 57 ; i++){
         output(datosSuicide[i]);
-        outputLED(datosSuicide[i]);
         DELAY = delayc(DELAY);
     }
 }
