@@ -1,7 +1,7 @@
 .text
 
 .extern outputLED
-.extern delayc
+.extern delayass
 .global init_pool
 
 
@@ -32,5 +32,5 @@ division:
      LSR R5,R5,#1
      BAL vuelta
 salida:
-     POP{R4-R5,PC}
+     POP {R4-R5,PC}
 .end
