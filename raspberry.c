@@ -24,7 +24,6 @@ void tenis2();
 void suicide();
 void outputLED(unsigned char);
 
-
 const char led[] = {7,8,25,24,23,18,15,14};
 
 unsigned char datosAuto[]= {
@@ -307,6 +306,36 @@ int tomadelay(int n){
 
 
 int delayc(int a) {
+    initscr();
+    noecho();
+    cbreak();
+    int c;
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
+    c = getch();
+    nocbreak();
+    if(c == KEY_UP){
+        a = tomadelay(1);
+    }
+    if(c==KEY_DOWN){
+        a = tomadelay(0);
+    }
+    if (c==102){ //finaliza con f, cbreak no me deja con intro
+        echo();
+        endwin();
+        ejec = 0;
+        menu();
+    }
+    for (int j = 0; j < a; j++) {
+        unsigned int i = 0x4fffff; //raspberry 0x3fffff
+        while (i)i--;
+    }
+    echo();
+    endwin();
+    return  a;
+}
+
+int delayass(int a) {
     initscr();
     noecho();
     cbreak();

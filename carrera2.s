@@ -5,24 +5,28 @@
 
 .extern outputLED
 .extern delayc
-.global inicializar
+.global init_carrera
 
 
 
 init_carrera:
-    MOV R1,#0
-    MOV R2,#20
+    PUSH {R4-R6, LR}
+    MOV R4, #0
+    MOV R5, #20
 repite:
-     LDR R3, = array // load base address of a into R3
-     LDRB R3,[R3,R1]
-     ADD R1,R1,#1
-     MOV R0,R1
+     LDR R6, = array
+     LDRB R6, [R6,R4]
+     ADD R4, R4, #1
+     MOV R0, R4
      BL outputLED
-     MOV R0,R2
-     BL delayc
-     MOV R2,R0
-     AL repite
-
+     MOV R0, R5
+     BL delayass
+     MOV R5, R0
+     CMP R5, #0
+     BEQ salida
+     BNE repite
+salida:
+     POP {R4-R6, PC}
 .data
 array:
       .byte 0x80

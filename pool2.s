@@ -2,25 +2,29 @@
 
 .extern outputLED
 .extern delayc
-.global inicializar
+.global init_pool
 
 
 init_pool:
-    MOV R2,#20
+    PUSH {R4-R6, LR}
+    MOV R4,#20
 pool:
     MOV R1,#128
 loop:
-     ADD R1,R1,#16
-     MOV R0,R1
-     LD outputLED
-     MOV R1,R0
-     MOV R0,R2
+     ADD R5,R5,#16
+     MOV R0,R5
      BL outputLED
-     MOV R2,R0
-     CMP R1,#32
-     BEQ LSR R1
-     LSR R1
-     CMP R1,#1
+     MOV R0,R4
+     BL delayass
+     MOV R4,R0
+     CMP R4,#0
+     BEQ salida
+     CMP R5,#32
+     BEQ LSR R5
+     LSR R5
+     CMP R5,#1
      BEQ pool
      BNE loop
+salida:
+     POP{Ŕ4-R5,PC}
 .end
