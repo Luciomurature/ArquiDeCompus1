@@ -21,7 +21,7 @@ loop:
      BEQ salida
      CMP R5,#32
      BEQ division
-     vuelta
+  vuelta:
      LSR R5
      CMP R5,#1
      BEQ pool
@@ -29,7 +29,7 @@ loop:
 
 division:
      LSR R5
-     vuelta
+     AL vuelta
 salida:
      POP{Ŕ4-R5,PC}
 .end
