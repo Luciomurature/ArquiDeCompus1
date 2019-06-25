@@ -23,13 +23,13 @@ loop:
      BEQ division
      BNE vuelta
   vuelta:
-     LSR R5
+     LSR R5,R5,#1
      CMP R5,#1
      BEQ pool
      BNE loop
 
 division:
-     LSR R5
+     LSR R5,R5,#1
      AL vuelta
 salida:
      POP{Ŕ4-R5,PC}
