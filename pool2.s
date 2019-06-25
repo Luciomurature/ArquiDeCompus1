@@ -30,7 +30,7 @@ loop:
 
 division:
      LSR R5,R5,#1
-     AL vuelta
+     BAL vuelta
 salida:
-     POP{Ŕ4-R5,PC}
+     POP{R4-R5,PC}
 .end
