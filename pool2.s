@@ -27,7 +27,6 @@ loop:
      CMP R5,#1
      BEQ pool
      BNE loop
-
 division:
      LSR R5,R5,#1
      BAL vuelta

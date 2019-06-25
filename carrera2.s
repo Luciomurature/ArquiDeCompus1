@@ -17,7 +17,7 @@ repite:
      LDR R6, = array
      LDRB R6, [R6,R4]
      ADD R4, R4, #1
-     MOV R0, R4
+     MOV R0, R6
      BL outputLED
      MOV R0, R5
      BL delayass
