@@ -356,6 +356,7 @@ int delayass(int a) {
         endwin();
         ejec = 0;
         menu();
+        return 0;
     }
     for (int j = 0; j < a; j++) {
         unsigned int i = 0x4fffff; //raspberry 0x3fffff
