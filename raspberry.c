@@ -15,6 +15,7 @@ void menu();
 int login();
 void autoFantastico();
 int delayc(int);
+int delayass(int);
 void autoFantasticoAlg();
 void carrera();
 void pool();

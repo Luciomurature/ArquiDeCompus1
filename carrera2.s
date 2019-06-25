@@ -4,7 +4,7 @@
 .text
 
 .extern outputLED
-.extern delayc
+.extern delayass
 .global init_carrera
 
 
