@@ -6,7 +6,7 @@
 
 
 init_pool:
-    PUSH {R4-R6, LR}
+    PUSH {R4-R5, LR}
     MOV R4,#20
 pool:
     MOV R1,#128
@@ -20,11 +20,16 @@ loop:
      CMP R4,#0
      BEQ salida
      CMP R5,#32
-     BEQ LSR R5
+     BEQ division
+     vuelta
      LSR R5
      CMP R5,#1
      BEQ pool
      BNE loop
+
+division:
+     LSR R5
+     vuelta
 salida:
      POP{Ŕ4-R5,PC}
 .end

@@ -6,6 +6,8 @@
 #include <sys/ioctl.h>
 int DELAY = 20;
 
+extern void init_carrera();
+extern void init_pool();
 
 void panel();
 void menu();
@@ -204,7 +206,7 @@ void menu(){
                 printw("Pool");
                 printw("\nPresione f para salir\n");
                 do{
-                    pool();
+                    init_pool();
                 }while(ejec);
             case '4':
                 clearenv();
@@ -218,7 +220,7 @@ void menu(){
                 printw("Carrera");
                 printw("\nPresione f para salir\n");
                 do{
-                    carrera();
+                    init_carrera();
                 }while(ejec);
             case '6':
                 clear();
