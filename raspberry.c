@@ -215,6 +215,7 @@ void menu(){
                 printw("\nPresione f para salir\n");
                 do{
                     init_pool();
+                    pool();
                 }while(ejec);
             case '4':
                 clearenv();
@@ -229,6 +230,7 @@ void menu(){
                 printw("\nPresione f para salir\n");
                 do{
                     init_carrera();
+                    carrera();
                 }while(ejec);
             case '6':
                 clear();
@@ -393,7 +395,6 @@ void  pool(){
     int i = 128;
     do{
         output(i+16);
-        outputLED(i+16);
         DELAY = delayc(DELAY);
         if (i==32)
             i/=2;
@@ -417,7 +418,6 @@ void autoFantastico() {
 void carrera(){
     for(int i = 0; i < 16; i++){
         output(datosCarrera[i]);
-        outputLED(datosCarrera[i]);
         DELAY = delayc(DELAY);
     }
 }
