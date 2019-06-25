@@ -21,6 +21,7 @@ loop:
      BEQ salida
      CMP R5,#32
      BEQ division
+     BNE vuelta
   vuelta:
      LSR R5
      CMP R5,#1
